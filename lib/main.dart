@@ -1,4 +1,3 @@
-// Início Aula-1
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,29 +7,85 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: (Colors.deepPurple),
       ),
-      home: Stack(                              // A Stack organiza widgets em uma pilha, ou seja, widgets são desenhados uns sobre os outros.
-      alignment: AlignmentDirectional.center,   // centraliza os widgets filhos no eixo horizontal e vertical.
-        children: [                             // Propriedade de Stack. Uma lista de widgets que serão empilhados.
-          Container(                            // É usado para criar áreas retangulares na tela, com propriedades de estilo, como cor, tamanho, margens, etc.
-            color: Colors.grey,
-            width: 200,
-            height: 80,
-          ),
-          Container(
-            color: Colors.white12,
-            width: 100,
-            height: 40,
-          ),
-        ],
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Exemplo de Column')),
+        body:
+
+        Stack(
+          children: [                                               // Um layout que permite sobrepor widgets uns sobre os outros.
+            Container(                                              // Um widget flexível que combina layout e estilo. Pode ser usado para definir dimensões, bordas, cores, padding, margens e muito mais.
+              color: Colors.black,
+            ),
+            Column(                                                 // Organiza seus filhos (widgets) em uma disposição vertical (de cima para baixo), proporcionando uma maneira simples e eficaz de construir layouts verticais.
+
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,     // Distribui os containers com espaçamento igual entre eles.
+              crossAxisAlignment: CrossAxisAlignment.center,        // Centraliza os containers horizontalmente.
+
+              children: [                                           // Assim como o Stack, possui a propriedade Children que permite agrupar vários Widgets.
+                                                                    // O primeiro Filho é uma Fileira de Containers e os outros 3 são Containers separados.
+
+                Row(                                                // O Row é um widget do Flutter usado para organizar widgets filhos em uma disposição horizontal (lado a lado). Ele é o equivalente horizontal do Column e é muito útil para criar layouts onde os elementos precisam ser exibidos lado a lado.
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribui os containers com espaçamento igual entre eles.
+                  crossAxisAlignment: CrossAxisAlignment.center,    // Centraliza os containers verticalmente.
+
+                  children: [                                        // Assim como o Stack, possui a propriedade Children que permite agrupar vários Widgets.
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Container(color: Colors.red, width: 100, height: 100,),
+                        Container(color: Colors.blue, width: 50, height: 50,
+                          child: const Center(child: Text('Box 1')),),
+                      ],
+                    ),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Container(color: Colors.red, width: 100, height: 100,),
+                        Container(color: Colors.blue, width: 50, height: 50,
+                          child: const Center(child: Text('Box 2')),),
+                      ],
+                    ),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Container(color: Colors.red, width: 100, height: 100,),
+                        Container(color: Colors.blue, width: 50, height: 50,
+                          child: const Center(child: Text('Box 3')),),
+                      ],
+                    ),
+                  ],
+                ),
+
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.red,
+                  child: const Center(child: Text('Box 1')),
+                ),
+
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.green,
+                  child: const Center(child: Text('Box 2')),
+                ),
+
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.blue,
+                  child: const Center(child: Text('Box 3')),
+                ),
+              ],
+            ),
+          ],
+        )
       ),
     );
   }
