@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: const Text('Exemplo de Column')),
         body:
 
-        Stack(
+        Stack(                                                      // Precione Alt + Enter para envolver o Widget com outro.
           children: [                                               // Um layout que permite sobrepor widgets uns sobre os outros.
             Container(                                              // Um widget flexível que combina layout e estilo. Pode ser usado para definir dimensões, bordas, cores, padding, margens e muito mais.
-              color: Colors.black,
+              color: Colors.cyan,
             ),
             Column(                                                 // Organiza seus filhos (widgets) em uma disposição vertical (de cima para baixo), proporcionando uma maneira simples e eficaz de construir layouts verticais.
 
@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
 
               children: [                                           // Assim como o Stack, possui a propriedade Children que permite agrupar vários Widgets.
                                                                     // O primeiro Filho é uma Fileira de Containers e os outros 3 são Containers separados.
-
                 Row(                                                // O Row é um widget do Flutter usado para organizar widgets filhos em uma disposição horizontal (lado a lado). Ele é o equivalente horizontal do Column e é muito útil para criar layouts onde os elementos precisam ser exibidos lado a lado.
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribui os containers com espaçamento igual entre eles.
                   crossAxisAlignment: CrossAxisAlignment.center,    // Centraliza os containers verticalmente.
@@ -61,26 +60,65 @@ class MyApp extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 Container(
                   width: 100,
                   height: 100,
                   color: Colors.red,
                   child: const Center(child: Text('Box 1')),
                 ),
-
                 Container(
                   width: 100,
                   height: 100,
                   color: Colors.green,
                   child: const Center(child: Text('Box 2')),
                 ),
-
                 Container(
                   width: 100,
                   height: 100,
                   color: Colors.blue,
                   child: const Center(child: Text('Box 3')),
+                ),
+                Container(
+                  height: 50,
+                  width: 450,
+                  margin: const EdgeInsets.all(16),                 // Ajuste de Margem. Adiciona 16 de margem em todos os lados.
+                  padding: const EdgeInsets.only(top: 10),          // Ajuste espaço interno entre o conteúdo e as bordas do widget.
+                  decoration: BoxDecoration(                        // O DecoratedBox é uma ferramenta poderosa para estilização no Flutter e, em conjunto com outros widgets, ajuda a construir interfaces elegantes e responsivas.
+                    color: Colors.yellow,
+                    border: Border.all(color: Colors.black, width: 2),  // Define uma borda preta
+                    borderRadius: BorderRadius.circular(10),            // Adiciona cantos arredondados
+                  ),
+                  child: const Text(                                    // Text é responsável por exibir texto na interface do usuário.
+                      'Container Amarelo com Box Decoration ',          // String Data
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      textAlign: TextAlign.center,
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: (){print("Botão Pressionado");},      // Gatilho de Botão
+                    child: Text("Elevated Button")),
+                ElevatedButton(
+                  onPressed: () {
+                    print('Botão estilizado pressionado!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 10, // Elevação
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),      // Bordas arredondadas
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),                                              // Espaçamento interno
+
+                  ),
+                  child: const Text(
+                    'Elevated Button Estilizado',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ],
             ),
