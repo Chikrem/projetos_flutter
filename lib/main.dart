@@ -23,12 +23,12 @@ class MyApp extends StatelessWidget {
           ),
           body: ListView(
                     children: [
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 3),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 2),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 4),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 1),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 5),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 3),
                     ],
               )
       )
@@ -39,8 +39,9 @@ class MyApp extends StatelessWidget {
 class Card extends StatefulWidget {
   final String nome;
   final String foto;
+  final int dif;
 
-  Card (this.nome, this.foto, {super.key});
+  Card (this.nome, this.foto, this.dif, {super.key});
 
   @override
   State<Card> createState() => _CardState();
@@ -120,9 +121,12 @@ class _CardState extends State<Card> {
                             ),
 
                             Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
+
                               children: [
                                 Container(
+                                  width: 170,
                                   child: Text(
                                     widget.nome,
                                     style: const TextStyle(
@@ -131,7 +135,17 @@ class _CardState extends State<Card> {
                                     ),
                                   ),
                                 ),
-                                const Text('estrelas'),
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.star, size: 15, color: widget.dif >= 1 ? Colors.blue : Colors.blue[100]),
+                                      Icon(Icons.star, size: 15, color: widget.dif >= 2 ? Colors.blue : Colors.blue[100]),
+                                      Icon(Icons.star, size: 15, color: widget.dif >= 3 ? Colors.blue : Colors.blue[100]),
+                                      Icon(Icons.star, size: 15, color: widget.dif >= 4 ? Colors.blue : Colors.blue[100]),
+                                      Icon(Icons.star, size: 15, color: widget.dif >= 5 ? Colors.blue : Colors.blue[100]),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
 
@@ -142,13 +156,16 @@ class _CardState extends State<Card> {
                               child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
-                                      barra++;
-                                      if (barra == 10){
-                                        nivel++;
-                                        barra = 0;
-                                      };
+
+                                      if (nivel < 10) {
+                                        barra++;
+                                        if (barra == 10) {
+                                          nivel++;
+                                          barra = 0;
+                                        }
+                                      }
                                     });
-                                    print(nivel);
+                                    // print(nivel);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
@@ -190,13 +207,13 @@ class _CardState extends State<Card> {
                                 width: 200,
                                 child: LinearProgressIndicator(
                                   color: Colors.white,
-                                  value: barra/10,
+                                  value: (widget.dif > 0) ? (barra/widget.dif)/10 : 1,
                                 )),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: Text(
-                              'Nível: $nivel',
+                              (nivel == 10) ? ('Nível: Max') : ('Nível: $nivel' ),
                               style: TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ),
