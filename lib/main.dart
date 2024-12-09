@@ -23,11 +23,12 @@ class MyApp extends StatelessWidget {
           ),
           body: ListView(
                     children: [
-                      Card('Flutter 0'),
-                      Card('Flutter 1'),
-                      Card('Flutter 2'),
-                      Card('Flutter 3'),
-                      Card('Flutter 4'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+                      Card('Flutter 0', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
                     ],
               )
       )
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
 
 class Card extends StatefulWidget {
   final String nome;
+  final String foto;
 
-  Card (this.nome, {super.key});
+  Card (this.nome, this.foto, {super.key});
 
   @override
   State<Card> createState() => _CardState();
@@ -106,12 +108,15 @@ class _CardState extends State<Card> {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.blueGrey,
                                 borderRadius:
                                 BorderRadius.circular(5), // Define o raio da borda
                               ),
                               width: 100,
                               height: 120,
+                              child: Image.network(
+                                   widget.foto,
+                                   fit: BoxFit.cover),
                             ),
 
                             Column(
