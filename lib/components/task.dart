@@ -17,6 +17,24 @@ class _CardState extends State<Task> {
   int nivel = 0; // Nível da tarefa
   int barra = 0; // Progresso na barra de nível
 
+  final List<Color> gradienteVerdeAVermelho = [
+    Color(0xFF00FF00), // Verde
+    Color(0xFF4CFF00), // Verde limão
+    Color(0xFF99FF00), // Verde claro
+    Color(0xFFFFCC00), // Amarelo
+    Color(0xFFFFAA00), // Amarelo alaranjado
+    Color(0xFFFF8800), // Laranja claro
+    Color(0xFFFF5500), // Laranja escuro
+    Color(0xFFFF3300), // Vermelho claro
+    Color(0xFFFF1100), // Vermelho forte
+    Color(0xFFFF0000), // Vermelho
+  ];
+
+
+  Color corPorNivel(int nivel) {
+    return gradienteVerdeAVermelho[(nivel - 1).clamp(0, gradienteVerdeAVermelho.length - 1)];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,7 +55,7 @@ class _CardState extends State<Task> {
                         offset: const Offset(0, 3),
                       ),
                     ],
-                    color: Colors.blue,
+                    color: corPorNivel(nivel),
                     borderRadius:
                     BorderRadius.circular(5), // Define o raio da borda
                   ),
@@ -112,7 +130,7 @@ class _CardState extends State<Task> {
                                     setState(() {
                                       if (nivel < 10) {
                                         barra++;
-                                        if (barra == 10) {
+                                        if (barra == widget.dif * 10) { // Atualização com base na dificuldade
                                           nivel++; // Incrementa o nível ao completar a barra
                                           barra = 0;
                                         }
@@ -159,9 +177,7 @@ class _CardState extends State<Task> {
                                 width: 200,
                                 child: LinearProgressIndicator(
                                   color: Colors.white,
-                                  value: (widget.dif > 0)
-                                      ? (barra / widget.dif) / 10
-                                      : 1,
+                                  value: barra / (widget.dif * 10),
                                 )),
                           ),
                           // Exibição do nível atual
