@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-// Início Aula-4
-=======
->>>>>>> aula-3
 import 'package:flutter/material.dart';
 
 void main() {
