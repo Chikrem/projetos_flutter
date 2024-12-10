@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'difficulty.dart';
+
+// O ponto de entrada do aplicativo
 void main() {
   runApp(MyApp());
 }
 
+// Widget principal do aplicativo, que é um StatefulWidget para permitir mudanças de estado
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
@@ -12,29 +16,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // Controla a opacidade do conteúdo no corpo do Scaffold
   bool opacidade = true;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
+          // Define o tema principal do aplicativo
           primarySwatch: (Colors.deepPurple),
         ),
         home: Scaffold(
           appBar: AppBar(
             title: const Text(
-              'Tarefas',
+              'Tarefas', // Título exibido na barra superior
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.blue, // Cor de fundo da AppBar
           ),
           body: AnimatedOpacity(
-            opacity: opacidade ? 1 : 0,
-            duration: Duration(milliseconds: 1000),
+            // Anima a transição de opacidade ao alternar entre os estados
+            opacity: opacidade ? 1 : 0, // Define se o conteúdo é visível ou não
+            duration: Duration(milliseconds: 1000), // Duração da animação
             child: ListView(
-              children:[
+              children: [
+                // Lista de Cards exibindo as tarefas
                 Padding(
-                  padding: EdgeInsets.only(top:8),
+                  padding: EdgeInsets.only(top: 8),
                   child: Card(
                       'Estudar Flutter',
                       'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
@@ -54,29 +62,31 @@ class _MyAppState extends State<MyApp> {
                     4),
                 Card('Jogar',
                     'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg',
-                     1),
+                    1),
                 const SizedBox(
-                  height: 100,
+                  height: 100, // Espaço vazio ao final da lista
                 ),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton(
+            // Botão flutuante para alternar a visibilidade do conteúdo
             onPressed: () {
-              setState((){
-                opacidade = !opacidade;
+              setState(() {
+                opacidade = !opacidade; // Inverte o estado de opacidade
               });
             },
-            child: Icon(Icons.remove_red_eye),
+            child: Icon(Icons.remove_red_eye), // Ícone do botão
           ),
         ));
   }
 }
 
+// Classe que define um Card personalizado para exibir informações de tarefas
 class Card extends StatefulWidget {
-  final String nome;
-  final String foto;
-  final int dif;
+  final String nome; // Nome da tarefa
+  final String foto; // URL da imagem
+  final int dif; // Dificuldade da tarefa
 
   Card(this.nome, this.foto, this.dif, {super.key});
 
@@ -85,15 +95,15 @@ class Card extends StatefulWidget {
 }
 
 class _CardState extends State<Card> {
-  int nivel = 0;
-  int barra = 0;
+  int nivel = 0; // Nível da tarefa
+  int barra = 0; // Progresso na barra de nível
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0), // Espaçamento ao redor do Card
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width, // Largura responsiva
         child: Column(
           children: [
             Stack(
@@ -102,7 +112,7 @@ class _CardState extends State<Card> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.5), // Sombra do Card
                         spreadRadius: 2,
                         blurRadius: 5,
                         offset: Offset(0, 3),
@@ -110,11 +120,11 @@ class _CardState extends State<Card> {
                     ],
                     color: Colors.blue,
                     borderRadius:
-                        BorderRadius.circular(5), // Define o raio da borda
+                    BorderRadius.circular(5), // Define o raio da borda
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: 160,
-                  margin: EdgeInsets.all(10),
+                  height: 160, // Altura total do Card
+                  margin: EdgeInsets.all(10), // Espaçamento interno
                   child: Column(
                     children: [
                       Stack(children: [
@@ -122,23 +132,23 @@ class _CardState extends State<Card> {
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
+                                color: Colors.grey.withOpacity(0.5), // Sombra interna
                                 spreadRadius: 2,
                                 blurRadius: 5,
                                 offset: Offset(0, 3),
                               ),
                             ],
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                                5), // Define o raio da borda
+                            borderRadius: BorderRadius.circular(5), // Bordas arredondadas
                           ),
                           width: MediaQuery.of(context).size.width,
-                          height: 120,
+                          height: 120, // Altura da parte superior do Card
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            // Imagem da tarefa
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
@@ -149,7 +159,7 @@ class _CardState extends State<Card> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
                                 child: Image.network(
-                                  widget.foto,
+                                  widget.foto, // Imagem carregada da URL
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -158,48 +168,23 @@ class _CardState extends State<Card> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // Nome da tarefa
                                 Container(
                                   width: 170,
                                   child: Text(
                                     widget.nome,
                                     style: const TextStyle(
                                         fontSize: 24,
-                                        overflow: TextOverflow.ellipsis),
+                                        overflow: TextOverflow.ellipsis), // Texto truncado se for muito longo
                                   ),
                                 ),
                                 Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.star,
-                                          size: 15,
-                                          color: widget.dif >= 1
-                                              ? Colors.blue
-                                              : Colors.blue[100]),
-                                      Icon(Icons.star,
-                                          size: 15,
-                                          color: widget.dif >= 2
-                                              ? Colors.blue
-                                              : Colors.blue[100]),
-                                      Icon(Icons.star,
-                                          size: 15,
-                                          color: widget.dif >= 3
-                                              ? Colors.blue
-                                              : Colors.blue[100]),
-                                      Icon(Icons.star,
-                                          size: 15,
-                                          color: widget.dif >= 4
-                                              ? Colors.blue
-                                              : Colors.blue[100]),
-                                      Icon(Icons.star,
-                                          size: 15,
-                                          color: widget.dif >= 5
-                                              ? Colors.blue
-                                              : Colors.blue[100]),
-                                    ],
-                                  ),
+                                  child: Difficulty(difficulty: widget.dif,),                  // Widget Estrelas de dificuldade
+
                                 ),
                               ],
                             ),
+                            // Botão para ganhar XP
                             Container(
                               width: 60,
                               height: 80,
@@ -210,12 +195,11 @@ class _CardState extends State<Card> {
                                       if (nivel < 10) {
                                         barra++;
                                         if (barra == 10) {
-                                          nivel++;
+                                          nivel++; // Incrementa o nível ao completar a barra
                                           barra = 0;
                                         }
                                       }
                                     });
-                                    // print(nivel);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
@@ -230,7 +214,7 @@ class _CardState extends State<Card> {
                                   child: const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Icon(
                                         Icons.arrow_drop_up,
@@ -250,6 +234,7 @@ class _CardState extends State<Card> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          // Barra de progresso do nível
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -261,6 +246,7 @@ class _CardState extends State<Card> {
                                       : 1,
                                 )),
                           ),
+                          // Exibição do nível atual
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: Text(
@@ -268,7 +254,7 @@ class _CardState extends State<Card> {
                                   ? ('Nível: Max')
                                   : ('Nível: $nivel'),
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
+                              TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ),
                         ],
@@ -284,3 +270,5 @@ class _CardState extends State<Card> {
     );
   }
 }
+
+
