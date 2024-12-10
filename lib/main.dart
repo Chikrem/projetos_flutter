@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:projetos_flutter/initialScreen.dart';
+import 'package:projetos_flutter/components/initial_screen.dart';
 
 
 // O ponto de entrada do aplicativo
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 // Widget principal do aplicativo, que é um StatefulWidget para permitir mudanças de estado
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
+class MyApp extends StatelessWidget {
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  const MyApp({super.key});
 
-class _MyAppState extends State<MyApp> {
-  // Controla a opacidade do conteúdo no corpo do Scaffold
-  bool opacidade = true;
-
-  @override
+@override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
           // Define o tema principal do aplicativo
           primarySwatch: (Colors.deepPurple),
         ),
-        home: const InitialScreen());
+        home: const InitialScreen());  // Scafold Widget
   }
 }

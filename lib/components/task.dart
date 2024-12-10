@@ -1,13 +1,13 @@
 // Classe que define um Card personalizado para exibir informações de tarefas
 import 'package:flutter/material.dart';
-import 'package:projetos_flutter/difficulty.dart';
+import 'package:projetos_flutter/components/difficulty.dart';
 
 class Task extends StatefulWidget {
   final String nome; // Nome da tarefa
   final String foto; // URL da imagem
   final int dif; // Dificuldade da tarefa
 
-  Task(this.nome, this.foto, this.dif, {super.key});
+  const Task(this.nome, this.foto, this.dif, {super.key});
 
   @override
   State<Task> createState() => _CardState();
@@ -21,7 +21,7 @@ class _CardState extends State<Task> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0), // Espaçamento ao redor do Card
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width, // Largura responsiva
         child: Column(
           children: [
@@ -34,7 +34,7 @@ class _CardState extends State<Task> {
                         color: Colors.grey.withOpacity(0.5), // Sombra do Card
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                     color: Colors.blue,
@@ -43,7 +43,7 @@ class _CardState extends State<Task> {
                   ),
                   width: MediaQuery.of(context).size.width,
                   height: 160, // Altura total do Card
-                  margin: EdgeInsets.all(10), // Espaçamento interno
+                  margin: const EdgeInsets.all(10), // Espaçamento interno
                   child: Column(
                     children: [
                       Stack(children: [
@@ -54,7 +54,7 @@ class _CardState extends State<Task> {
                                 color: Colors.grey.withOpacity(0.5), // Sombra interna
                                 spreadRadius: 2,
                                 blurRadius: 5,
-                                offset: Offset(0, 3),
+                                offset: const Offset(0, 3),
                               ),
                             ],
                             color: Colors.white,
@@ -77,7 +77,7 @@ class _CardState extends State<Task> {
                               height: 120,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
-                                child: Image.network(
+                                child: Image.asset(
                                   widget.foto, // Imagem carregada da URL
                                   fit: BoxFit.cover,
                                 ),
@@ -88,7 +88,7 @@ class _CardState extends State<Task> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Nome da tarefa
-                                Container(
+                                SizedBox(
                                   width: 170,
                                   child: Text(
                                     widget.nome,
@@ -97,17 +97,16 @@ class _CardState extends State<Task> {
                                         overflow: TextOverflow.ellipsis), // Texto truncado se for muito longo
                                   ),
                                 ),
-                                Container(
-                                  child: Difficulty(difficulty: widget.dif,),                  // Widget Estrelas de dificuldade
 
-                                ),
+                                Difficulty(difficulty: widget.dif,),                  // Widget Estrelas de dificuldade
+
                               ],
                             ),
                             // Botão para ganhar XP
                             Container(
                               width: 60,
                               height: 80,
-                              margin: EdgeInsets.only(right: 20),
+                              margin: const EdgeInsets.only(right: 20),
                               child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
@@ -156,7 +155,7 @@ class _CardState extends State<Task> {
                           // Barra de progresso do nível
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
+                            child: SizedBox(
                                 width: 200,
                                 child: LinearProgressIndicator(
                                   color: Colors.white,
@@ -173,7 +172,7 @@ class _CardState extends State<Task> {
                                   ? ('Nível: Max')
                                   : ('Nível: $nivel'),
                               style:
-                              TextStyle(color: Colors.white, fontSize: 16),
+                              const TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ),
                         ],

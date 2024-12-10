@@ -50,7 +50,7 @@ class FirstWidget extends StatelessWidget {
                         children: [
                           Container(color: Colors.red, width: 100, height: 100,),
                           Container(color: Colors.blue, width: 50, height: 50,
-                            child: Center(child: Text('Box 3')),),
+                            child: const Center(child: Text('Box 3')),),
                         ],
                       ),
                     ],
@@ -60,7 +60,7 @@ class FirstWidget extends StatelessWidget {
                     width: 100,
                     height: 300,
                     color: Colors.red,
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: const Center(child: Text(
                       'Este é um texto muito longo que pode causar overflow.',          // "overflow" ocorre quando um widget tenta renderizar conteúdo que excede os limites do seu contêiner pai.
                       overflow: TextOverflow.ellipsis,
@@ -70,14 +70,14 @@ class FirstWidget extends StatelessWidget {
                     width: 100,
                     height: 100,
                     color: Colors.green,
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: const Center(child: Text('Box 2')),
                   ),
                   Container(
                     width: 100,
                     height: 100,
                     color: Colors.blue,
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: const Center(child: Text('Box 3')),
                   ),
                   Container(
@@ -100,11 +100,13 @@ class FirstWidget extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: (){print("Botão Pressionado");},      // Gatilho de Botão
-                      child: Text("Elevated Button")),
+                      onPressed: (){
+                        // print("Botão Pressionado");
+                        },      // Gatilho de Botão
+                      child: const Text("Elevated Button")),
                   ElevatedButton(
                     onPressed: () {
-                      print('Botão estilizado pressionado!');
+                      // print('Botão estilizado pressionado!');
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10, // Elevação
