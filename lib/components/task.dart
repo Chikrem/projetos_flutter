@@ -174,7 +174,7 @@ class _CardState extends State<Task> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                                width: 200,
+                                width: 250,
                                 child: LinearProgressIndicator(
                                   color: Colors.white,
                                   value: barra / (widget.dif * 10),
