@@ -8,6 +8,9 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+
+  TextEditingController nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +36,82 @@ class _FormScreenState extends State<FormScreen> {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              TextFormField(
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Nome',
-                  fillColor: Colors.white70,
-                  filled: true,
-                  hintStyle: TextStyle(
-                    color: Colors.grey
-                  )
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: nameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0), // Cor da borda padrão
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 1.5), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.5), // Cor da borda ao focar
+                    ),
+                    labelText: 'Nome',
+                    fillColor: Colors.white70,
+                    filled: true,
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: nameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0), // Cor da borda padrão
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 1.5), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.5), // Cor da borda ao focar
+                    ),
+                    labelText: 'Nome',
+                    fillColor: Colors.white70,
+                    filled: true,
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: nameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0), // Cor da borda padrão
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 1.5), // Cor da borda quando não está focado
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2.5), // Cor da borda ao focar
+                    ),
+                    labelText: 'Nome',
+                    fillColor: Colors.white70,
+                    filled: true,
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+
+              ElevatedButton(onPressed: () {
+                // print(nameController.text);
+              } , child: const Text('Adicionar'))
             ],
           ),
         ),
