@@ -41,6 +41,8 @@ class _FormScreenState extends State<FormScreen> {
           ),
           padding: const EdgeInsets.all(8), // Padding interno do container
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Campo de texto para o nome
               Padding(
@@ -98,6 +100,11 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  onChanged: (texto){
+                    setState(() {
+                      // Atualiza a versão da imagem sempre que o campo de url da imagem é alterado
+                    });
+                  },
                   controller: imageController, // Controlador associado ao campo
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
@@ -116,6 +123,26 @@ class _FormScreenState extends State<FormScreen> {
                     labelStyle: TextStyle(
                       color: Colors.black45,
                     ),
+                  ),
+                ),
+              ),
+
+              // Campo de previsualização da imagem
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.white70,
+                ),
+                width: 100,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: Image.network(
+                    imageController.text, // Imagem carregada da URL
+                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace){
+                      return Image.asset('assets/images/no-image.png');
+                    },
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
