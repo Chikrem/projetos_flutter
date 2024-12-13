@@ -1,7 +1,8 @@
-// Início Aula-6
+// Início Aula-5
 
 import 'package:flutter/material.dart';
-import 'package:projetos_flutter/components/initial_screen.dart';
+import 'package:projetos_flutter/screens/form_screen.dart';
+import 'package:projetos_flutter/screens/initial_screen.dart';
 
 
 // O ponto de entrada do aplicativo
@@ -21,6 +22,6 @@ class MyApp extends StatelessWidget {
           // Define o tema principal do aplicativo
           primarySwatch: (Colors.deepPurple),
         ),
-        home: const InitialScreen());  // Scafold Widget
+        home: const FormScreen());  // Scafold Widget
   }
 }
