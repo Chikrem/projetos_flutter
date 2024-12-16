@@ -17,6 +17,13 @@ class _CardState extends State<Task> {
   int nivel = 0; // Nível da tarefa
   int barra = 0; // Progresso na barra de nível
 
+  bool assetOrNetwork(){
+    if(widget.foto.contains('http')){
+      return false;
+    }
+    return true;
+  }
+
   final List<Color> gradienteVerdeAVermelho = [
     Color(0xFF00FF00), // Verde
     Color(0xFF4CFF00), // Verde limão
@@ -95,10 +102,13 @@ class _CardState extends State<Task> {
                               height: 120,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(4),
-                                child: Image.asset(
+                                child: assetOrNetwork() ? Image.asset(
                                   widget.foto, // Imagem carregada da URL
                                   fit: BoxFit.cover,
-                                ),
+                                ) : Image.network(
+                                    widget.foto,
+                                    fit: BoxFit.cover,
+                                )
                               ),
                             ),
                             Column(
@@ -204,5 +214,6 @@ class _CardState extends State<Task> {
     );
   }
 }
+
 
 

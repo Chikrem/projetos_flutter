@@ -143,6 +143,11 @@ class _FormScreenState extends State<FormScreen> {
                     onPressed: () {
                       if(_formKey.currentState!.validate()) {
                         TaskInherited.of(context).newTask(nameController.text, imageController.text, int.parse(selectedDifficulty));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Criando uma nova Tarefa'),
+                          ),
+                        );
                         Navigator.pop(context);
                       }
                     },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projetos_flutter/components/task.dart';
 import 'package:projetos_flutter/data/task_inherited.dart';
 import 'package:projetos_flutter/screens/form_screen.dart';
 
@@ -23,7 +22,8 @@ class _InitialScreenState extends State<InitialScreen> {
         backgroundColor: Colors.blue, // Cor de fundo da AppBar
       ),
       body: ListView(
-        children: TaskInherited.of(context).taskList,     // lista de Tarefas
+        children: TaskInherited.of(context).taskList,
+        padding: EdgeInsets.only(top: 8, bottom: 70),// lista de Tarefas
       ),
 
       floatingActionButton: FloatingActionButton(
