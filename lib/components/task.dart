@@ -7,15 +7,16 @@ class Task extends StatefulWidget {
   final String foto; // URL da imagem
   final int dif; // Dificuldade da tarefa
 
-  const Task(this.nome, this.foto, this.dif, {super.key});
+  Task(this.nome, this.foto, this.dif, {super.key});
+
+  int nivel = 0; // Nível da tarefa
+  int barra = 0; // Progresso na barra de nível
 
   @override
   State<Task> createState() => _CardState();
 }
 
 class _CardState extends State<Task> {
-  int nivel = 0; // Nível da tarefa
-  int barra = 0; // Progresso na barra de nível
 
   bool assetOrNetwork(){
     if(widget.foto.contains('http')){
@@ -62,7 +63,7 @@ class _CardState extends State<Task> {
                         offset: const Offset(0, 3),
                       ),
                     ],
-                    color: corPorNivel(nivel),
+                    color: corPorNivel(widget.nivel),
                     borderRadius:
                     BorderRadius.circular(5), // Define o raio da borda
                   ),
@@ -138,11 +139,11 @@ class _CardState extends State<Task> {
                               child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
-                                      if (nivel < 10) {
-                                        barra++;
-                                        if (barra == widget.dif * 10) { // Atualização com base na dificuldade
-                                          nivel++; // Incrementa o nível ao completar a barra
-                                          barra = 0;
+                                      if (widget.nivel < 10) {
+                                        widget.barra++;
+                                        if (widget.barra == widget.dif * 10) { // Atualização com base na dificuldade
+                                          widget.nivel++; // Incrementa o nível ao completar a barra
+                                          widget.barra = 0;
                                         }
                                       }
                                     });
@@ -187,16 +188,16 @@ class _CardState extends State<Task> {
                                 width: 250,
                                 child: LinearProgressIndicator(
                                   color: Colors.white,
-                                  value: barra / (widget.dif * 10),
+                                  value: widget.barra / (widget.dif * 10),
                                 )),
                           ),
                           // Exibição do nível atual
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: Text(
-                              (nivel == 10)
+                              (widget.nivel == 10)
                                   ? ('Nível: Max')
-                                  : ('Nível: $nivel'),
+                                  : ('Nível:${widget.nivel}'),
                               style:
                               const TextStyle(color: Colors.white, fontSize: 16),
                             ),
