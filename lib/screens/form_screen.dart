@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetos_flutter/screens/initial_screen.dart';
 
 const List<String> list = <String>['1', '2', '3', '4', '5'];
 
@@ -141,15 +142,16 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                     onPressed: () {
                       if(_formKey.currentState!.validate()) {
-                        print(nameController.text); // Nome
-                        print(selectedDifficulty); // Dificuldade selecionada
-                        print(imageController.text); // Imagem
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Printando nova Tarefa'),
-                          ),
-                        );
+                        // print(nameController.text); // Nome
+                        // print(selectedDifficulty); // Dificuldade selecionada
+                        // print(imageController.text); // Imagem
+                        //
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(
+                        //     content: Text('Printando nova Tarefa'),
+                        //   ),
+                        // );
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Adicionar'),

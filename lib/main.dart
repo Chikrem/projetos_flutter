@@ -1,7 +1,6 @@
 // Início Aula-5
 
 import 'package:flutter/material.dart';
-import 'package:projetos_flutter/screens/form_screen.dart';
 import 'package:projetos_flutter/screens/initial_screen.dart';
 
 
@@ -17,11 +16,7 @@ class MyApp extends StatelessWidget {
 
 @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          // Define o tema principal do aplicativo
-          primarySwatch: (Colors.deepPurple),
-        ),
-        home: const FormScreen());  // Scafold Widget
+    return const MaterialApp(
+        home: InitialScreen());  // Scafold Widget
   }
 }
