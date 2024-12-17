@@ -19,6 +19,19 @@ class _InitialScreenState extends State<InitialScreen> {
           'Tarefas', // Título exibido na barra superior
           style: TextStyle(color: Colors.white),
         ),
+        bottom: const PreferredSize(preferredSize: (Size.square(20)),
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment:  MainAxisAlignment.center,
+                children: [
+                  Text('data'),
+                  Text('data'),
+                  Text('data'),
+                ],
+              ),
+            )),
         backgroundColor: Colors.blue, // Cor de fundo da AppBar
       ),
       body: ListView(
