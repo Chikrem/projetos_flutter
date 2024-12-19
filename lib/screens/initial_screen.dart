@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projetos_flutter/components/task.dart';
+import 'package:projetos_flutter/data/task_dao.dart';
 import 'package:projetos_flutter/data/task_inherited.dart';
 import 'package:projetos_flutter/screens/form_screen.dart';
 
@@ -34,9 +36,31 @@ class _InitialScreenState extends State<InitialScreen> {
             )),
         backgroundColor: Colors.blue, // Cor de fundo da AppBar
       ),
-      body: ListView(
-        children: TaskInherited.of(context).taskList,
+      body: Padding(
         padding: EdgeInsets.only(top: 8, bottom: 70),// lista de Tarefas
+        child: FutureBuilder<List<Task>>(future: TaskDao().findAll(), builder: (context, snapshot){
+          List<Task>? items = snapshot.data;
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              // TODO: Handle this case.
+            case ConnectionState.waiting:
+              // TODO: Handle this case.
+            case ConnectionState.active:
+              // TODO: Handle this case.
+            case ConnectionState.done:
+              if (snapshot.hasData && items != null){
+                if(items.isNotEmpty){
+                  return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext context, int index){
+                        final Task tarefa = items[index];
+                        return tarefa;
+                      });
+                }
+              }
+            break;
+          }
+        }),
       ),
 
       floatingActionButton: FloatingActionButton(

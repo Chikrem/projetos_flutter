@@ -96,3 +96,21 @@ class TaskDao {
   }
 
 }
+
+// Insert (Inserir): Metodo essencial para adicionar informações ao banco de dados.
+// No pacote sqflite, o insert() requer dois parâmetros obrigatórios: o nome da tabela [String table]
+// e as informações a serem inseridas em formato de mapa [Map values]. Foi usado na função save() do nosso DAO.
+//
+// Implementar o metodo update (atualizar): Metodo para mudar, atualizar, reformular alguma informação
+// já existente no banco de dados. Usado para tarefas que já foram criadas, o metodo update() foi
+// utilizado na função save() do DAO após a verificação da existência prévia da tarefa a ser adicionada.
+//
+// Utilizar o metodo delete (deletar): Para remoção de informações do banco de dados, implementamos a
+// função delete() capaz de verificar a existência de uma tarefa pelo nome e removê-la diretamente da
+// tabela. Vale ressaltar que utilizar o nome da tarefa como verificação de controle não é a melhor das
+// alternativas e que o ideal seria a utilização de um UUID.
+//
+// Fazer a conversão de Tarefa para Mapa: Assim como surgiu a necessidade de transformar mapas em
+// listas de tarefas no passado, precisamos implementar a “conversão” inversa. Ou seja, a conversão
+// de uma tarefa para um Map<String,dynamic> é necessária para inserir informações no banco de dados
+// sequencial do sqflite.
